@@ -26,7 +26,8 @@ print(len(text))
 # called "aStringSentence." Use the .find() method.
 
 aStringSentence = "Did the cat jump out the window yesterday?"
-print() # your code here!
+x = aStringSentence.find("window")
+print(x)
 
 #------------------------------------------------------------------------
 # Task 7: Modify the print statement below so that it prints out the contents
