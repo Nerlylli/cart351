@@ -44,4 +44,5 @@ print(x)
 # the string, with all whitespace removed, and with all letters converted to
 # uppercase. Use the .upper() method.
 
-print() # your code here!
+y = partLy.strip().upper()
+print(y) 
