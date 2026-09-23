@@ -5,7 +5,10 @@
 x = 14
 y = 17.4
 z = "today is a fine day for sailing!"
-print(type(None))
+if x > y :
+	print(type(z))
+else:
+	print("")
 
 #------------------------------------------------------------------------
 # Task 5: Inside the call to "print" below, write an expression that evaluates
