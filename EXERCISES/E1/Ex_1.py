@@ -35,7 +35,8 @@ print(x)
 # the beginning and end of the string. Use the .strip() method.
 
 partLy = "     someone who has spent too much time    \n"
-print(partLy)
+x = partLy.strip("\t, \n")
+print(x)
 
 #------------------------------------------------------------------------
 # Task 8: Using the previously defined "partLy" variable, write an
