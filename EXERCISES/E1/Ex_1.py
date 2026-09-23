@@ -17,7 +17,8 @@ else:
 
 first_line = "It was the best of times."
 second_line = "It was the worst of times."
-print() # your code here!
+text = first_line + second_line
+print(len(text))
 
 #------------------------------------------------------------------------
 # Task 6: Inside the call to "print" below, write an expression that evaluates
