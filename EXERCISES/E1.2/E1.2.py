@@ -1,3 +1,93 @@
+# Lilin & Nerly
+# CART 351 EXERCISE TWO
+
+print("\n------")
+print("Task 15: List slices")
+print("Expected output: ['beta', 'gamma', 'delta']")
+
+# Task 15: Change the values of the variables "start" and "finish" below so that
+# the print statement displays the second through fourth items in the list
+# "greek" (defined above).
+
+start = 1
+finish = 4
+print(greek[start:finish])
+
+#------------------------------------------------------------------------
+
+print("\n------")
+print("Task 16: List slices, part 2")
+print("Expected output: ['delta', 'epsilon']")
+
+# Task 16: Change the value of the variable "foo" below so that the print
+# statement displays the last two members of the list "greek" (defined above).
+# Use a negative number for "foo".
+
+foo = 3
+print(greek[foo:])
+
+#------------------------------------------------------------------------
+
+print("\n------")
+print("Task 17: List operations")
+print("Expected output: True")
+
+# Task 17: Change the value of the variable "letter_to_look_for' below so
+# that the print statement displays "True."
+
+vegetables= ["aubergines", "carrots", "turnips", "fiddleheads", "artichokes"]
+word_to_look_for = "carrots"
+print(word_to_look_for in vegetables)
+
+#------------------------------------------------------------------------
+
+print("\n------")
+print("Task 18: List operations, part 2")
+print("Expected output: ['artichokes', 'aubergines', 'carrots', 'fiddleheads', 'turnips']")
+
+# Task 18: Change the expression below so that the print statement displays
+# the list "vegetables" (defined above) in alphabetical order. (Use the "sort"
+# function.
+
+vegetables.sort()
+print(vegetables)
+
+#------------------------------------------------------------------------
+
+print("\n------")
+print("Task 19: Modifying lists")
+print("Expected output: ['artichokes', 'aubergines', 'carrots', 'fiddleheads', 'turnips','radishes']")
+
+# Task 19: Write a Python statement that adds a new item, "radishes", to the
+# list "vegetables" (defined above). The print statement should display the updated
+# list.
+
+# write your statement here
+vegetables.append("radishes")
+print(vegetables)
+
+#------------------------------------------------------------------------
+
+print("\n------")
+print("Task 20: Loops")
+print("Expected output:")
+print("  artichokes")
+print("  aubergines")
+print("  carrots")
+print("  fiddleheads")
+print("  turnips")
+print("  radishes")
+
+# Task 20: Write a "for" loop below that prints out each item in the list
+# "vegetables" (defined above). (The list should contain the item that you
+# added to the list in task 17.)
+
+for veg in vegetables:
+	print(veg)
+
+
+#------------------------------------------------------------------------
+
 print("Task 21: Loops, part 2")
 print("Expected output:")
 print("  Artichokes")
