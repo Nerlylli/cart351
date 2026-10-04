@@ -41,14 +41,14 @@ specialList = {17: [1.6, 2.45], 42: [11.6, 19.4], 101: [0.123, 4.89]}
 #     print("* " + item)
 
 ###Adding key/value pairs to a dictionary
-shopping_rev = {
-            'vegetables': {"green":["spinach","broccoli","lettuce"],"orange":["carrots"]},
-            'fruit': ['canteloupe', 'banananas'],
-             'bakery': ['bagels', 'rye bread'],
-            }
-shopping_rev["cleaning_items"] = ["dish-soap", "sponges"]
-shopping_rev['cleaning_items'].append('bleach')
-print(shopping_rev)
+# shopping_rev = {
+#             'vegetables': {"green":["spinach","broccoli","lettuce"],"orange":["carrots"]},
+#             'fruit': ['canteloupe', 'banananas'],
+#              'bakery': ['bagels', 'rye bread'],
+#             }
+# shopping_rev["cleaning_items"] = ["dish-soap", "sponges"]
+# shopping_rev['cleaning_items'].append('bleach')
+# print(shopping_rev)
 
 ###Dictionary keys are unique - to add, values need to be in a list. cannot add something to a key that only has one value in it. 
 

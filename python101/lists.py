@@ -46,7 +46,7 @@
 # if 'star' not in list_ex:
 #     print('not in list')
 
-###join()
+##join()
 # element_list = ["hydrogen", "helium", "lithium", "beryllium", "boron"]
 # glue = ", and "
 # single_str = glue.join(element_list)
@@ -75,5 +75,5 @@
 # print(rList)
 
 ###READING FROM A TEXT TILE
-franken_1 = open("data/frankenstein.txt").read()
-print(franken_1)
+# franken_1 = open("data/frankenstein.txt").read()
+# print(franken_1)
