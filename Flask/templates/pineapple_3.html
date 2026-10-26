@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pineapples again in flask and vars</title>
+</head>
+
+<body>
+    <h1>pineapples again in flask number three</h1>
+    <p> Passed var is {{someNewVar}}</p>
+    <p> New List is {{someNewList[1]}}</p>
+    <h2> Hello Dictionary {{someNewDict}}</h2>
+    <h2> Hello Dictionary {{someNewDict['color']}}</h2>
+
+    <ul>
+        <!-- JINJA syntax for loop -->
+        {% for item in my_list %}
+        <!-- output the item-->
+        <li style="color:purple">item:{{item}}</li>
+        <!-- close the for loop-->
+        {% endfor %}
+    </ul>
+
+    <img src="../static/images/pineapple.jpeg" />
+</body>
+
+</html>
