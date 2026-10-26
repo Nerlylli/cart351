@@ -14,9 +14,13 @@
     <header>
         <h2> WEB APP HEADER </h2>
         <nav>
-            <ul>
-                <li> <a href="/index">Home </a> </li>
-                <li> <a href="/about">About</a> </li>
+            <ul> <!-- ul = unordered (bulleted) list. -->
+                <li> <a href="{{url_for('index')}}">Home </a> </li>
+                <li> <a href="{{url_for('PineChild')}}">About</a> </li>
+                <li> <a href="{{url_for('PineChildB')}}">Pineapple</a> </li>
+                <li> <a href="{{url_for('AddPlant')}}">Add Plant</a> </li>
+                <li> <a href="{{url_for('register')}}">Register</a> </li>
+                <!-- li = list item -->
             </ul>
         </nav>
     </header>
