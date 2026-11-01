@@ -36,14 +36,26 @@ def getSearchCriteria():
 
 #*************************************************
 # #Task-2: GET REQUEST
-# @app.route("/t2")
-# def t2():
-#     return render_template("t2.html")
+@app.route("/t2")
+def t2():
+    return render_template("t2.html")
 #*************************************************
 @app.route("/getSearchCriteria_adv")
 def getSearchCriteria_adv():
- #fill me in :
-    pass
+#fill me in : 
+    query = request.args["input_text"]
+    # to query something is to look for something
+    url= f'https://images-api.nasa.gov/search?q={query}&media_type=image'
+    response = requests.get(url)
+    data = response.json()
+    imgFromNasa = data['collection']['items'][0]['links'][0]['href']
+    imgFromNasa = imgFromNasa.replace(' ', '%20')
+    description = data['collection']['items'][0]['data'][0]['description']
+    # curly brackets are a list
+    return render_template('t2.html',
+                           have_results = True,
+                           description = description,
+                           imgPath = imgFromNasa )
 #*************************************************
 
 #run
