@@ -4,13 +4,13 @@
 {%endblock%}
 {%block content%}
 
-<section class="T2-collect">
+<section class="t2-collect">
     <div class="formContainer">
         <form id="insertT2Data" action="/getSearchCriteriaAdv">
-            <h3>NASA API SEARCH CRITERIA</h3>
+            <h3>NASA</h3>
             <fieldset>
                 <p>
-                    <label>Search Engine</label>
+                    <label>NASA API SEARCH CRITERIA:</label>
                     <input type="text" placeholder="Search For..." size="24" maxlength="40" name="input_text" required>
                 </p>
                 <p>
@@ -23,10 +23,12 @@
     </div>
 
     <div class="formDisplayContainer">
-        {% if have_results == True%}
-        <p>{{description}}</p>
-        <img src={{imgPath}} />
-        {%endif%}
+        {% for singleImage in images %}
+        <p>
+            {{description}}
+        </p>
+        <img src={{singleImage}} />
+        {% endfor %}
     </div>
 </section>
 {%endblock%}

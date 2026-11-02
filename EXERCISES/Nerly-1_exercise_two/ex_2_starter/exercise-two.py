@@ -48,14 +48,12 @@ def getSearchCriteria_adv():
     url= f'https://images-api.nasa.gov/search?q={query}&media_type=image'
     response = requests.get(url)
     data = response.json()
-    imgFromNasa = data['collection']['items'][0]['links'][0]['href']
-    imgFromNasa = imgFromNasa.replace(' ', '%20')
-    description = data['collection']['items'][0]['data'][0]['description']
-    # curly brackets are a list
-    return render_template('t2.html',
-                           have_results = True,
-                           description = description,
-                           imgPath = imgFromNasa )
+    encodedImageLinks[]
+    for imgFromNasa in data['collection']['items']:
+        singleImage = (imgFromNasa["links"][0]["href"])
+        singleImage = singleImage.replace(' ', '%20')
+        encodedImageLinks.append(singleImage)
+    return render_template("t2.html",images=encodedImageLinks)
 #*************************************************
 
 #run
