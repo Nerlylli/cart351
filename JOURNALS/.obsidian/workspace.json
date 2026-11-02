@@ -55,12 +55,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "entry_wk_5.md",
+                "file": "entry_wk_2.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "entry_wk_5"
+              "title": "entry_wk_2"
             }
           }
         ],
@@ -233,9 +233,9 @@
   },
   "active": "95bf20616b3c604c",
   "lastOpenFiles": [
+    "entry_wk_3.md",
     "entry_wk_4.md",
     "entry_wk_5.md",
-    "entry_wk_2.md",
-    "entry_wk_3.md"
+    "entry_wk_2.md"
   ]
 }
