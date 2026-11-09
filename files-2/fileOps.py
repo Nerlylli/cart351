@@ -13,7 +13,8 @@
 # allLines = rainbowFile.readlines()
 # print(allLines)
 
-sampleFile = open("files/sample_text_rev.text", "w")
+# WRITING A TEXT FILE
+# sampleFile = open("files/sample_text_rev.text", "w")
 # for i in range(3): 
 #     a_name = input("Enter the name of the animal: ") 
 #     sampleFile.write(a_name) 
@@ -22,13 +23,23 @@ sampleFile = open("files/sample_text_rev.text", "w")
 # print("Data is written into the file.") 
 # if ran again, it will not append, it will overwrite
 
-colorList = [] 
+# colorList = [] 
+# for i in range(3): 
+#     a_name = input("Enter the name of a color: ") 
+#     colorList.append(a_name + '\n') 
+#     #writing > line
+# sampleFile.writelines(colorList) 
+# sampleFile.close() 
+# print("Data is written into the file.") 
+
+# APENDING TO A TEXT FILE
+sampleFile_a = open("files/sample_text.txt", "a") #opened with A instead of W - W will overwrite
+nameList = [] 
 for i in range(3): 
-    a_name = input("Enter the name of a color: ") 
-    colorList.append(a_name + '\n') 
-    #writing > line
-sampleFile.writelines(colorList) 
-sampleFile.close() 
+    a_name = input("Enter the name of someone in your class: ") 
+    nameList.append('\n' + a_name) 
+sampleFile_a.writelines(nameList) 
+sampleFile_a.close() 
 print("Data is written into the file.") 
 
 

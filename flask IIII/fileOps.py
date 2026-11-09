@@ -1,1 +1,0 @@
-rainbowFile = open('files/rainbow.txt', "w+")
