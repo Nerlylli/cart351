@@ -1,0 +1,15 @@
+# READING A TEXT FILE
+rainbowFile = open('files/rainbow.txt',"r")
+out = rainbowFile.read(4)
+# print(out)
+outAll=rainbowFile.read()
+# print(outAll)
+rainbowFile.seek(0)
+out_all_again = rainbowFile.read()
+# print(out_all_again)
+rainbowFile.seek(0)
+# oneLine = rainbowFile.readline()
+# print(oneLine)
+allLines = rainbowFile.readlines()
+print(allLines)
+
