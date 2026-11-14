@@ -11,22 +11,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Bitcount+Ink:wght@100..900&family=Henny+Penny&display=swap"
         rel="stylesheet">
     <!-- FILES -->
-    <link rel="stylesheet" href="base.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
+    <script></script>
 </head>
 
 <body style="overflow: hidden;
-        background: url(assets/images/WP.jpg);
+        background: url('{{ url_for('static', filename='images/WP.jpg') }}');
         background-repeat: no-repeat;
         background-size: 101vw 100vh;">
 
-    <img class="mySpace" src="assets/images/mySpace.gif">
+    <img class="mySpace" src="{{ url_for('static', filename='images/mySpace.gif') }}">
 
     <section>
         <div class="infoBox" style="overflow: hidden scroll;
         scrollbar-width: none;
         
         position: relative;
-                background: url(assets/images/brain.jpg); 
+                 background: url('{{ url_for('static', filename='images/brain.jpg') }}');
                 background-repeat: no-repeat;
                 background-size: cover;
                 border: 1px solid purple;
@@ -165,11 +166,8 @@
     </section>
 
     <section>
-        <img class="doll" src="assets/images/doll.png"
+        <img class="doll" src="{{ url_for('static', filename='images/doll.png') }}"
             style="position: absolute; height: 80%;width: 50%;top: 2.5%;left: 50%;">
-        <marquee direction="left" scrollamount="25">
-            <img class="uniBlue" src="assets/images/uniBlue.png">
-        </marquee>
     </section>
 </body>
 
