@@ -58,3 +58,59 @@
     height: 13%;
     width: 13%;
 }
+
+
+input[type=text],
+input[type=date] {
+    margin: 5px 0;
+    border: 2px solid hotpink;
+    border-style: inset;
+    /* border: 1px solid; */
+    color: black;
+}
+
+input[type=submit] {
+    position: absolute;
+    margin: 5px 0;
+    padding: 10px;
+    cursor: pointer;
+    background-color: hotpink;
+    border: none;
+    width: 30%;
+    left: 35%;
+}
+
+input[type=submit]:hover {
+    background-color: rgb(217, 135, 169);
+}
+
+input[type=color] {
+    margin: 5px 0;
+    border: none;
+    background-color: transparent;
+}
+
+textarea,
+select {
+    margin: 5px 0;
+    color: black;
+    border: 2px solid hotpink;
+}
+
+textarea {
+    border-style: inset;
+}
+
+select {
+    border-style: outset;
+}
+
+p {
+
+    font-family: Bitcount Ink, system-ui;
+    margin: 5px;
+}
+
+.mySpace {
+    margin-left: 10%;
+}

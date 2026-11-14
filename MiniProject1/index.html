@@ -5,78 +5,158 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mini Project</title>
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitcount+Ink:wght@100..900&family=Henny+Penny&display=swap"
+        rel="stylesheet">
+    <!-- FILES -->
     <link rel="stylesheet" href="base.css">
 </head>
 
 <body style="overflow: hidden;
-        background: url(assets/images/bedroom.png);
+        background: url(assets/images/WP.jpg);
         background-repeat: no-repeat;
         background-size: 101vw 100vh;">
 
+    <img class="mySpace" src="assets/images/mySpace.gif">
+
     <section>
-        <div style="position: relative;
-                background: white; 
-                border: 10px solid purple;   
-                border-style:dashed;       
-                height: 80vh;
-                width: 50vw;
-                top: 70px;
-                left: 3%;">
+        <div class="infoBox" style="overflow: hidden scroll;
+        scrollbar-width: none;
+        
+        position: relative;
+                background: url(assets/images/brain.jpg); 
+                background-repeat: no-repeat;
+                background-size: cover;
+                border: 1px solid purple;
+                height: 65vh;
+                width: 40vw;
+                left: 8%;">
 
-            <h3> ADD A NEW PLANT</h3>
-            <fieldset>
-                <p>
-                    <label>Owner Name:</label>
-                    <input type="text" size="24" maxlength="40" name="o_name" required>
-                </p>
 
-                <p>
-                    <label>Plant Name:</label>
-                    <input type="text" size="24" maxlength="40" name="p_name" required>
-                </p>
+            <h3 style="text-align: center; color: hotpink;   font-family: Henny Penny, system-ui"> WHO ARE YOU? </h3>
+            <p>
+                <label>Name:</label>
+                <input type="text" size="24" maxlength="40" name="p_name" required>
+            </p>
 
-                <p>
-                    <label>Plant Color:</label>
-                    <input type="color" name="p_color" required>
-                </p>
-                <div class="range-ui">
+            <p>
+                <label>Pronouns:</label>
+                <input type="text" size="24" maxlength="40" name="pronouns" required>
+            </p>
+            <p>
+                <label>Birthday:</label>
+                <input type="date" name="a_date" required>
+            </p>
+            <br>
 
-                    <label>Plant Condition:</label>
+            <h3 style="text-align: center; color: hotpink; font-family: Henny Penny, system-ui"> WHAT ARE YOUR
+                FAVORITES?</h3>
+            <p>
+                <label>General</label>
+                <textarea type="text" rows="2" cols="50" name="t_general" required></textarea>
+            </p>
 
-                    <div>
-                        <input type="range" name="p_condition" min="0" max="100" value="0" step="1" list="values" />
-                        <datalist id="values">
-                            <option value="0" label="almost dead!"></option>
-                            <option value="100" label="super-alive"></option>
-                        </datalist>
-                    </div>
+            <p>
+                <label>Color</label>
+                <input type="color" name="p_color" required>
+            </p>
 
-                </div>
+            <p>
+                <label>Music</label>
+                <textarea type="text" rows="2" cols="50" name="t_music" required></textarea>
+            </p>
+            <p>
+                <label>Movies</label>
+                <textarea type="text" rows="2" cols="50" name="t_music" required></textarea>
+            </p>
+            <p>
+                <label>Television</label>
+                <textarea type="text" rows="2" cols="50" name="t_tv" required></textarea>
+            </p>
+            <p>
+                <label>Games</label>
+                <textarea type="text" rows="2" cols="50" name="t_games" required></textarea>
+            </p>
+            <p>
+                <label>Books</label>
+                <textarea type="text" rows="2" cols="50" name="t_books" required></textarea>
+            </p>
 
-                <p>
-                    <label>Home of Plant:</label>
-                    <select name="plant-home">
-                        <option value="Montreal">Montreal</option>
-                        <option value="Quebec City">Quebec City</option>
-                        <option value="Ottawa">Ottawa</option>
-                        <option value="Winnipeg">Winnipeg</option>
-                        <option value="Vancouver">Vancouver</option>
-                    </select>
-                </p>
-                <p>
-                    <label>Birth Date (DD-MM-YYYY):</label>
-                    <input type="date" name="a_date" required>
-                </p>
-                <p>
-                    <label>Description:</label>
-                    <textarea type="text" rows="4" cols="50" name="a_descript" required></textarea>
-                </p>
-                <p>
-                    <label></label>
-                    <input id="submitPlant" type="submit" name="submit" value="submit my info" id=buttonS />
-                </p>
-            </fieldset>
 
+            <h3 style="text-align: center; color: hotpink; font-family: Henny Penny, system-ui"> DETAILS</h3>
+            <p>
+                <label>Here for:</label>
+                <input type="text" size="24" maxlength="40" name="p_name" required>
+            </p>
+
+            <div>
+
+            </div>
+
+            <p>
+                <label>Status</label>
+                <select name="Relationship-Status">
+                    <option value="Single">Single</option>
+                    <option value="Taken">Taken</option>
+                    <option value="Complicated">Complicated</option>
+                </select>
+            </p>
+
+            <p>
+                <label>Sexuality</label>
+                <select name="Sexuality">
+                    <option value="Lesbian">Lesbian</option>
+                    <option value="Gay">Gay</option>
+                    <option value="Bisexual">Bisexual</option>
+                    <option value="Straight">Straight</option>
+                    <option value="None">Unlabeled</option>
+                    <option value="Figuring">Figuring it Out</option>
+                    <option value="Stop">Prefer Not To Say</option>
+                    <option value="Other">Other</option>
+                </select>
+            </p>
+
+            <p>
+                <label>Ethnicity</label>
+                <select name="Sexuality">
+                    <option value="Arab">Arab</option>
+                    <option value="Asian">Asian</option>
+                    <option value="Black">Black</option>
+                    <option value="Hispanic/Latino">Hispanic/Latino</option>
+                    <option value="Indigenous">Indigenous/First Nations</option>
+                    <option value="White">White</option>
+                </select>
+            </p>
+
+
+            <p>
+                <label>Zodiac Sign</label>
+                <select name="Zodiac">
+                    <option value="Aries">Aries</option>
+                    <option value="Taurus">Taurus</option>
+                    <option value="Gemini">Gemini</option>
+                    <option value="Cancer">Cancer</option>
+                    <option value="Leo">Leo</option>
+                    <option value="Virgo">Virgo</option>
+                    <option value="Libra">Libra</option>
+                    <option value="Scorpio">Scorpio</option>
+                    <option value="Sagittarius">Sagittarius</option>
+                    <option value="Capricorn">Capricorn</option>
+                    <option value="Aquarius">Aquarius</option>
+                    <option value="Pisces">Pisces</option>
+                </select>
+            </p>
+
+            <p>
+                <label>Occupation</label>
+                <input type="text" size="24" maxlength="40" name="p_name" required>
+            </p>
+            <p>
+                <label></label>
+                <input id="submitInfo" type="submit" name="submit" value="Sign Up" id=button />
+            </p>
             </form>
         </div>
     </section>
@@ -86,7 +166,7 @@
 
     <section>
         <img class="doll" src="assets/images/doll.png"
-            style="position: absolute; height: 80%;width: 50%;top: 2.5%;left: 55%;">
+            style="position: absolute; height: 80%;width: 50%;top: 2.5%;left: 50%;">
         <marquee direction="left" scrollamount="25">
             <img class="uniBlue" src="assets/images/uniBlue.png">
         </marquee>
