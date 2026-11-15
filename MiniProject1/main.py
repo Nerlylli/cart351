@@ -11,32 +11,30 @@ def index():
 
 @app.route('/getData', methods=['POST'])
 def getData():
-
-    # app.logger.info(request.args["id"])
-    # app.logger.info(request.args["score"])
-    filePath="Datajson/users.json"
-    if os.path.exists(filePath):
-        jsonFile = open(filePath, "r+")
+    filePath="datajson/users.json"
+    # open the file
+    jsonFile = open(filePath, "r+")
+    # want to check if file has data
+    first_char = jsonFile.read(1)
+    # if is empty (first time)
+    if not first_char:
+        print("The file is empty.")
+        # put the data from the html form into the list
+        theList = [request.form]
+        # put into json
+        json.dump(theList,jsonFile, indent=4)
+        jsonFile.close()
+    else:
+        jsonFile.seek(0)
+        print("The file has content.")
         theList = json.load(jsonFile)
-        # nameExists = False
-        # oldData = ""
-        # for el in theList:
-        #     if el["id"].upper() ==  request.args["id"].upper():
-        #         nameExists = True
-        #         oldData = el["score"]
-        #         el["score"] = request.args["score"]
-        #         break # This exits the loop entirely
-        #clear 
         jsonFile.truncate(0)
         jsonFile.close()
+        # open a new file - will overwrite
         jsonFile_write = open(filePath, "w")
-        if nameExists ==True: 
-            json.dump(theList,  jsonFile_write, indent =4)
-            jsonFile_write.close()
-            return({"inFile":"true","score":oldData})
-        else:
-            theList.append(request.args)
-            json.dump(theList, jsonFile_write, indent =4)
-            jsonFile_write.close()
-            return({"inFile":"false"})
+        theList.append(request.form)
+        json.dump(theList,jsonFile_write,indent=4)
+        jsonFile_write.close()
+    # send back response
+    return({"added":"success"})
 app.run(debug=True)
