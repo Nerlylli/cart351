@@ -20,10 +20,10 @@ Some resources to help me with the different languages I used (HTML, CSS, JavaSc
 I used neocities.org, which is a social network that allows indie web design to its users. The main page I used as inspiration was "https://maxolivo.com". Although my page looks nothing like this aesthetically, the personal information that are found on his neocities page are the same I used for my own mini-project. 
 
 # SCREEN GRABS
-> ![Whole page](/static/images/MainPage.png)
-> ![How the data is written](/static/images/DataW.png)
-> ![How the data is written, part 2](/static/images/DataW_2.png)
-> ![How the data is read](/static/images/DataR.png)
-> ![How the data is read, part 2](/static/images/DataR_2.png)
-> ![How the data is stored](/static/images/jsonFile.png)
+> ![Whole page](static/images/MainPage.png)
+> ![How the data is written](static/images/DataW.png)
+> ![How the data is written, part 2](static/images/DataW_2.png)
+> ![How the data is read](static/images/DataR.png)
+> ![How the data is read, part 2](static/images/DataR_2.png)
+> ![How the data is stored](static/images/jsonFile.png)
 

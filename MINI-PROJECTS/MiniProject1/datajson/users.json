@@ -10,11 +10,29 @@
         "t_tv": "PEN15, Puella Magi Madoka Magica, Heartbreak High",
         "t_games": "Sims 4",
         "t_books": "The Summer Hikaru Died, Nana",
-        "p_name": "coding ",
+        "p_name": "coding",
         "Relationship-Status": "Single",
         "Sexuality": "Lesbian",
         "Ethnicity": "Black",
         "Zodiac": "Cancer",
         "o_name": "Student"
+    },
+    {
+        "u_name": "Kate",
+        "Pronouns": "she/her",
+        "b_date": "2005-07-15",
+        "t_general": "apple",
+        "f_color": "#ed0707",
+        "t_music": "music",
+        "t_movies": "movies",
+        "t_tv": "shows",
+        "t_games": "games",
+        "t_books": "book",
+        "p_name": "coding",
+        "Relationship-Status": "Taken",
+        "Sexuality": "Stop",
+        "Ethnicity": "Black",
+        "Zodiac": "Cancer",
+        "o_name": "student"
     }
 ]
