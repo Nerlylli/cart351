@@ -129,21 +129,25 @@ check if there has been something posted to the server to be processed
 '''
 @app.route("/three")
 def three():
- results = mongo.db.dataStuff.find({'$or':[{'after_mood': 'calm'}, {'after_mood':'neutral'}, {'after_mood':'happy'}]})
+ results = mongo.db.dataStuff.find({'$or':[{'after_mood': 'calm'}, {'after_mood':'neutral'}, {'after_mood':'happy'}, {'after_mood':'serene'}, {'after_mood':'well'}]})
  return({"results": results})
 
 
 @app.route("/four")
 def four():
- return({"results":"not yet done"})
+ results = mongo.db.dataStuff.find().sort("event_name", 1)
+ return({"results": results})
 
 @app.route("/five")
 def five():
-    return({"results":"not yet done"})
+    results = mongo.db.dataStuff.find({'$or':[{'day':'Monday'}, {'day':'Tuesday'}]}).sort("event_affect_strength",1)
+    return({"results": results})
 
 @app.route("/six")
 def six():
-     return({"results":"not yet done"})
+    results = mongo.db.dataStuff.find(
+        {'$and':[{'$or':[{'after_mood': 'sad'}, {'after_mood':'angry'}, {'after_mood':'neutral'}, {'after_mood':'calm'}, {'after_mood':'anxious'}, {'after_mood':'moody'}, {'after_mood':'hurt'}]}, {'$or':[{'start_mood': 'sad'}, {'start_mood':'angry'}, {'start_mood':'neutral'}, {'start_mood':'calm'}, {'start_mood':'anxious'}, {'start_mood':'moody'}, {'start_mood':'hurt'}]}]}).sort("weather", 1)
+    return({"results": results})
 
 app.run(debug = True)
 
