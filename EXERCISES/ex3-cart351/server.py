@@ -129,7 +129,8 @@ check if there has been something posted to the server to be processed
 '''
 @app.route("/three")
 def three():
- return({"results":"not yet done"})
+ results = mongo.db.dataStuff.find({'$or':[{'after_mood': 'calm'}, {'after_mood':'neutral'}, {'after_mood':'happy'}]})
+ return({"results": results})
 
 
 @app.route("/four")
