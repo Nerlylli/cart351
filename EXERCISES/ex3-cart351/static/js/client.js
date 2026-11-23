@@ -68,6 +68,7 @@ window.onload = function () {
         case "three": {
           console.log("three")
           // TODO
+          displayAsFamily(resJSON, "after_mood");
           break;
         }
         case "four": {
@@ -110,8 +111,161 @@ window.onload = function () {
       console.log(err);
     }
   }
-  /*******************DISPLAY AS GROUP****************************/
 
+  /*****************DISPLAY AS DEFAULT GRID :: AT ONLOAD ******************************/
+  function displayAsDefault(resultOBj) {
+    //reset
+    dataPoints = [];
+    let xPos = 0;
+    let yPos = 0;
+    const NUM_COLS = 50;
+    const CELL_SIZE = 20;
+    let coloredDays = {};
+    let resultSet = resultOBj.results;
+    possibleDays = resultOBj.days;
+    /*
+  1: get the array of days (the second entry in the resultOBj)
+  2: for each possible day (7)  - create a key value pair -> day: color and put in the
+  coloredDays object
+  */
+    console.log(possibleDays);
+    let possibleColors = [
+      "rgb(255, 102, 153)",
+      "rgb(255, 77, 136)",
+      "rgb(255, 51, 119)",
+      "rgb(255, 26, 102)",
+      "rgb(255, 0, 85)",
+      "rgb(255, 0, 85)",
+      "rgb(255, 0, 85)",
+    ];
+
+    for (let i = 0; i < possibleDays.length; i++) {
+      coloredDays[possibleDays[i]] = possibleColors[i];
+    }
+/* for through each result
+1: create a new MyDataPoint object and pass the properties from the db result entry to the object constructor
+2: set the color using the coloredDays object associated with the resultSet[i].day
+3:  put into the dataPoints array.
+**/
+    //set background of parent ... for fun ..
+    document.querySelector("#parent-wrapper").style.background =
+      "rgba(255,0,0,.4)";
+    description.textContent = "DEfAULT CASE";
+    description.style.color = "rgb(255, 0, 85)";
+
+    //last  element is the helper array...
+    for (let i = 0; i < resultSet.length - 1; i++) {
+      dataPoints.push(
+        new myDataPoint(
+          resultSet[i].dataId,
+          resultSet[i].day,
+          resultSet[i].weather,
+          resultSet[i].start_mood,
+          resultSet[i].after_mood,
+          resultSet[i].after_mood_strength,
+          resultSet[i].event_affect_strength,
+          resultSet[i].event_name,
+          //map to the day ...
+          coloredDays[resultSet[i].day],
+          //last parameter is where should this go...
+          document.querySelector("#childOne"),
+          //which css style///
+          "point"
+        )
+      );
+
+      /** this code is rather brittle - but does the job for now .. draw a grid of data points ..
+//*** drawing a grid ****/
+      if (i % NUM_COLS === 0) {
+        //reset x and inc y (go to next row)
+        xPos = 0;
+        yPos += CELL_SIZE;
+      } else {
+        //just move along in the column
+        xPos += CELL_SIZE;
+      }
+      //update the position of the data point...
+      dataPoints[i].update(xPos, yPos);
+    } //for
+    document.querySelector("#childOne").style.height = `${yPos + CELL_SIZE}px`;
+  } //function
+  
+  /*****************DISPLAY IN CIRCUlAR PATTERN:: <ONE>******************************/
+  function displayInCirclularPattern(resultOBj) {
+    //reset
+    dataPoints = [];
+    let xPos = 0;
+    let yPos = 0;
+    //for circle drawing
+    let angle = 0;
+    let centerX = window.innerWidth / 2;
+    let centerY = 350;
+
+    let scalar = 300;
+    let yHeight = Math.cos(angle) * scalar + centerY;
+
+    let resultSet = resultOBj.results;
+    let coloredMoods = {};
+
+    let possibleMoods = resultOBj.moods;
+    let possibleColors = [
+      "rgba(0, 64, 255,.5)",
+      "rgba(26, 83, 255,.5)",
+      "rgba(51, 102, 255,.7)",
+      "rgba(51, 102, 255,.4)",
+      "rgba(77, 121,255,.6)",
+      "rgba(102, 140, 255,.6)",
+      "rgba(128, 159, 255,.4)",
+      "rgba(153, 179, 255,.3)",
+      "rgba(179, 198, 255,.6)",
+      "rgba(204, 217, 255,.4)",
+    ];
+
+    for (let i = 0; i < possibleMoods.length; i++) {
+      coloredMoods[possibleMoods[i]] = possibleColors[i];
+    }
+
+    //set background of parent ... for fun ..
+    document.querySelector("#parent-wrapper").style.background =
+      "rgba(0, 26, 102,1)";
+    description.textContent = "BY AFTER MOOD";
+    description.style.color = "rgba(0, 64, 255,.5)";
+
+    for (let i = 0; i < resultSet.length - 1; i++) {
+      dataPoints.push(
+        new myDataPoint(
+          resultSet[i].dataId,
+          resultSet[i].day,
+          resultSet[i].weather,
+          resultSet[i].start_mood,
+          resultSet[i].after_mood,
+          resultSet[i].after_mood_strength,
+          resultSet[i].event_affect_strength,
+          resultSet[i].event_name,
+          //map to the day ...
+          coloredMoods[resultSet[i].after_mood],
+          //last parameter is where should this go...
+          document.querySelector("#childOne"),
+          //which css style///
+          "point_two"
+        )
+      );
+      /*** circle drawing ***/
+      xPos = Math.sin(angle) * scalar + centerX;
+      yPos = Math.cos(angle) * scalar + centerY;
+      angle += 0.13;
+
+      if (angle > 2 * Math.PI) {
+        angle = 0;
+        scalar -= 20;
+      }
+      dataPoints[i].update(xPos, yPos);
+    } //for
+
+    document.querySelector("#childOne").style.height = `${yHeight}px`;
+  } //function
+
+  /*******************DISPLAY AS GROUP: <TWO>****************************/
   function displayByGroups(resultObj, propOne, propTwo) {
     dataPoints = [];
     let finalHeight = 0;
@@ -206,46 +360,54 @@ window.onload = function () {
     document.querySelector("#childOne").style.height = `${finalHeight + 20}px`;
   } //function
 
-  /*****************DISPLAY IN CIRCUlAR PATTERN:: <ONE>******************************/
-  function displayInCirclularPattern(resultOBj) {
-    //reset
+  /*******************DISPLAY AS FAMILY: <THREE>****************************/
+  function displayAsFamily(resultObj, propOne) {
     dataPoints = [];
-    let xPos = 0;
-    let yPos = 0;
-    //for circle drawing
-    let angle = 0;
-    let centerX = window.innerWidth / 2;
-    let centerY = 350;
-
-    let scalar = 300;
-    let yHeight = Math.cos(angle) * scalar + centerY;
-
-    let resultSet = resultOBj.results;
-    let coloredMoods = {};
-
-    let possibleMoods = resultOBj.moods;
-    let possibleColors = [
-      "rgba(0, 64, 255,.5)",
-      "rgba(26, 83, 255,.5)",
-      "rgba(51, 102, 255,.7)",
-      "rgba(51, 102, 255,.4)",
-      "rgba(77, 121,255,.6)",
-      "rgba(102, 140, 255,.6)",
-      "rgba(128, 159, 255,.4)",
-      "rgba(153, 179, 255,.3)",
-      "rgba(179, 198, 255,.6)",
-      "rgba(204, 217, 255,.4)",
-    ];
-
-    for (let i = 0; i < possibleMoods.length; i++) {
-      coloredMoods[possibleMoods[i]] = possibleColors[i];
-    }
+    let finalHeight = 0;
+    //order by WEATHER and Have the event names as the color  ....
 
     //set background of parent ... for fun ..
     document.querySelector("#parent-wrapper").style.background =
-      "rgba(0, 26, 102,1)";
-    description.textContent = "BY AFTER MOOD";
-    description.style.color = "rgba(0, 64, 255,.5)";
+      "rgb(255, 51, 214)";
+    description.textContent = "BY AFTER_MOOD {POSITIVE}";
+    description.style.color = "rgb(179, 230, 204)";
+
+    let coloredEvents = {};
+    let resultSet = resultObj.results;
+
+    //reget
+    let possible_positive_moods = resultObj.positive_moods;
+    let possibleColors = [
+      "rgb(198, 236, 217)",
+      "rgb(179, 230, 204)",
+      "rgb(159, 223, 190)",
+      "rgb(140, 217, 177)",
+      "rgb(121, 210, 164)",
+      "rgb(102, 204, 151)",
+      "rgb(83, 198, 138)",
+      "rgb(64, 191, 125)",
+      "rgb(255, 204, 179)",
+      "rgb(255, 170, 128)",
+      "rgb(255, 153, 102)",
+      "rgb(255, 136, 77)",
+      "rgb(255, 119, 51)",
+      "rgb(255, 102, 26)",
+      "rgb(255, 85, 0)",
+      "rgb(230, 77, 0)",
+      "rgb(204, 68, 0)",
+    ];
+
+    for (let i = 0; i < possibleColors.length; i++) {
+      coloredEvents[possible_positive_moods[i]] = possibleColors[i];
+    }
+
+    let offsetX = 20;
+    let offsetY = 150;
+    // find the weather of the first one ...
+    let currentGroup = resultSet[0][propOne];
+    console.log(currentGroup);
+    let xPos = offsetX;
+    let yPos = offsetY;
 
     for (let i = 0; i < resultSet.length - 1; i++) {
       dataPoints.push(
@@ -258,71 +420,90 @@ window.onload = function () {
           resultSet[i].after_mood_strength,
           resultSet[i].event_affect_strength,
           resultSet[i].event_name,
-          //map to the day ...
-          coloredMoods[resultSet[i].after_mood],
+          //map to the EVENT ...
+          coloredEvents[resultSet[i].event_name],
           //last parameter is where should this go...
           document.querySelector("#childOne"),
           //which css style///
           "point_two"
         )
       );
-      /*** circle drawing ***/
-      xPos = Math.sin(angle) * scalar + centerX;
-      yPos = Math.cos(angle) * scalar + centerY;
-      angle += 0.13;
 
-      if (angle > 2 * Math.PI) {
-        angle = 0;
-        scalar -= 20;
+      /** check if we have changed group ***/
+      if (resultSet[i][propOne] !== currentGroup) {
+        //update
+        currentGroup = resultSet[i][propOne];
+        offsetX += 150;
+        offsetY = 150;
+        xPos = offsetX;
+        yPos = offsetY;
       }
+      // if not just keep on....
+      else {
+        if (i % 10 === 0 && i !== 0) {
+          xPos = offsetX;
+          yPos = yPos + 15;
+        } else {
+          xPos = xPos + 15;
+        }
+      } //end outer else
+
       dataPoints[i].update(xPos, yPos);
+      finalHeight = yPos;
     } //for
 
-    document.querySelector("#childOne").style.height = `${yHeight}px`;
+    document.querySelector("#childOne").style.height = `${finalHeight + 20}px`;
   } //function
 
-  /*****************DISPLAY AS DEFAULT GRID :: AT ONLOAD ******************************/
-  function displayAsDefault(resultOBj) {
-    //reset
+    /*******************DISPLAY AS FAMILY: <FOUR>****************************/
+  function displayAsFamily(resultObj, propOne) {
     dataPoints = [];
-    let xPos = 0;
-    let yPos = 0;
-    const NUM_COLS = 50;
-    const CELL_SIZE = 20;
-    let coloredDays = {};
-    let resultSet = resultOBj.results;
-    possibleDays = resultOBj.days;
-    /*
-  1: get the array of days (the second entry in the resultOBj)
-  2: for each possible day (7)  - create a key value pair -> day: color and put in the
-  coloredDays object
-  */
-    console.log(possibleDays);
-    let possibleColors = [
-      "rgb(255, 102, 153)",
-      "rgb(255, 77, 136)",
-      "rgb(255, 51, 119)",
-      "rgb(255, 26, 102)",
-      "rgb(255, 0, 85)",
-      "rgb(255, 0, 85)",
-      "rgb(255, 0, 85)",
-    ];
+    let finalHeight = 0;
+    //order by WEATHER and Have the event names as the color  ....
 
-    for (let i = 0; i < possibleDays.length; i++) {
-      coloredDays[possibleDays[i]] = possibleColors[i];
-    }
-/* for through each result
-1: create a new MyDataPoint object and pass the properties from the db result entry to the object constructor
-2: set the color using the coloredDays object associated with the resultSet[i].day
-3:  put into the dataPoints array.
-**/
     //set background of parent ... for fun ..
     document.querySelector("#parent-wrapper").style.background =
-      "rgba(255,0,0,.4)";
-    description.textContent = "DEfAULT CASE";
-    description.style.color = "rgb(255, 0, 85)";
+      "rgb(255, 51, 214)";
+    description.textContent = "BY AFTER_MOOD {POSITIVE}";
+    description.style.color = "rgb(179, 230, 204)";
 
-    //last  element is the helper array...
+    let coloredEvents = {};
+    let resultSet = resultObj.results;
+
+    //reget
+    let possible_positive_moods = resultObj.positive_moods;
+    let possibleColors = [
+      "rgb(198, 236, 217)",
+      "rgb(179, 230, 204)",
+      "rgb(159, 223, 190)",
+      "rgb(140, 217, 177)",
+      "rgb(121, 210, 164)",
+      "rgb(102, 204, 151)",
+      "rgb(83, 198, 138)",
+      "rgb(64, 191, 125)",
+      "rgb(255, 204, 179)",
+      "rgb(255, 170, 128)",
+      "rgb(255, 153, 102)",
+      "rgb(255, 136, 77)",
+      "rgb(255, 119, 51)",
+      "rgb(255, 102, 26)",
+      "rgb(255, 85, 0)",
+      "rgb(230, 77, 0)",
+      "rgb(204, 68, 0)",
+    ];
+
+    for (let i = 0; i < possibleColors.length; i++) {
+      coloredEvents[possible_positive_moods[i]] = possibleColors[i];
+    }
+
+    let offsetX = 20;
+    let offsetY = 150;
+    // find the weather of the first one ...
+    let currentGroup = resultSet[0][propOne];
+    console.log(currentGroup);
+    let xPos = offsetX;
+    let yPos = offsetY;
+
     for (let i = 0; i < resultSet.length - 1; i++) {
       dataPoints.push(
         new myDataPoint(
@@ -333,31 +514,231 @@ window.onload = function () {
           resultSet[i].after_mood,
           resultSet[i].after_mood_strength,
           resultSet[i].event_affect_strength,
-          resultSet[i].evnet_name,
-          //map to the day ...
-          coloredDays[resultSet[i].day],
+          resultSet[i].event_name,
+          //map to the EVENT ...
+          coloredEvents[resultSet[i].event_name],
           //last parameter is where should this go...
           document.querySelector("#childOne"),
           //which css style///
-          "point"
+          "point_two"
         )
       );
 
-      /** this code is rather brittle - but does the job for now .. draw a grid of data points ..
-//*** drawing a grid ****/
-      if (i % NUM_COLS === 0) {
-        //reset x and inc y (go to next row)
-        xPos = 0;
-        yPos += CELL_SIZE;
-      } else {
-        //just move along in the column
-        xPos += CELL_SIZE;
+      /** check if we have changed group ***/
+      if (resultSet[i][propOne] !== currentGroup) {
+        //update
+        currentGroup = resultSet[i][propOne];
+        offsetX += 150;
+        offsetY = 150;
+        xPos = offsetX;
+        yPos = offsetY;
       }
-      //update the position of the data point...
+      // if not just keep on....
+      else {
+        if (i % 10 === 0 && i !== 0) {
+          xPos = offsetX;
+          yPos = yPos + 15;
+        } else {
+          xPos = xPos + 15;
+        }
+      } //end outer else
+
       dataPoints[i].update(xPos, yPos);
+      finalHeight = yPos;
     } //for
-    document.querySelector("#childOne").style.height = `${yPos + CELL_SIZE}px`;
+
+    document.querySelector("#childOne").style.height = `${finalHeight + 20}px`;
+  } //function
+  
+    /*******************DISPLAY AS FAMILY: <FIVE>****************************/
+  function displayAsFamily(resultObj, propOne) {
+    dataPoints = [];
+    let finalHeight = 0;
+    //order by WEATHER and Have the event names as the color  ....
+
+    //set background of parent ... for fun ..
+    document.querySelector("#parent-wrapper").style.background =
+      "rgb(255, 51, 214)";
+    description.textContent = "BY AFTER_MOOD {POSITIVE}";
+    description.style.color = "rgb(179, 230, 204)";
+
+    let coloredEvents = {};
+    let resultSet = resultObj.results;
+
+    //reget
+    let possible_positive_moods = resultObj.positive_moods;
+    let possibleColors = [
+      "rgb(198, 236, 217)",
+      "rgb(179, 230, 204)",
+      "rgb(159, 223, 190)",
+      "rgb(140, 217, 177)",
+      "rgb(121, 210, 164)",
+      "rgb(102, 204, 151)",
+      "rgb(83, 198, 138)",
+      "rgb(64, 191, 125)",
+      "rgb(255, 204, 179)",
+      "rgb(255, 170, 128)",
+      "rgb(255, 153, 102)",
+      "rgb(255, 136, 77)",
+      "rgb(255, 119, 51)",
+      "rgb(255, 102, 26)",
+      "rgb(255, 85, 0)",
+      "rgb(230, 77, 0)",
+      "rgb(204, 68, 0)",
+    ];
+
+    for (let i = 0; i < possibleColors.length; i++) {
+      coloredEvents[possible_positive_moods[i]] = possibleColors[i];
+    }
+
+    let offsetX = 20;
+    let offsetY = 150;
+    // find the weather of the first one ...
+    let currentGroup = resultSet[0][propOne];
+    console.log(currentGroup);
+    let xPos = offsetX;
+    let yPos = offsetY;
+
+    for (let i = 0; i < resultSet.length - 1; i++) {
+      dataPoints.push(
+        new myDataPoint(
+          resultSet[i].dataId,
+          resultSet[i].day,
+          resultSet[i].weather,
+          resultSet[i].start_mood,
+          resultSet[i].after_mood,
+          resultSet[i].after_mood_strength,
+          resultSet[i].event_affect_strength,
+          resultSet[i].event_name,
+          //map to the EVENT ...
+          coloredEvents[resultSet[i].event_name],
+          //last parameter is where should this go...
+          document.querySelector("#childOne"),
+          //which css style///
+          "point_two"
+        )
+      );
+
+      /** check if we have changed group ***/
+      if (resultSet[i][propOne] !== currentGroup) {
+        //update
+        currentGroup = resultSet[i][propOne];
+        offsetX += 150;
+        offsetY = 150;
+        xPos = offsetX;
+        yPos = offsetY;
+      }
+      // if not just keep on....
+      else {
+        if (i % 10 === 0 && i !== 0) {
+          xPos = offsetX;
+          yPos = yPos + 15;
+        } else {
+          xPos = xPos + 15;
+        }
+      } //end outer else
+
+      dataPoints[i].update(xPos, yPos);
+      finalHeight = yPos;
+    } //for
+
+    document.querySelector("#childOne").style.height = `${finalHeight + 20}px`;
+  } //function
+  
+    /*******************DISPLAY AS FAMILY: <SIX>****************************/
+  function displayAsFamily(resultObj, propOne) {
+    dataPoints = [];
+    let finalHeight = 0;
+    //order by WEATHER and Have the event names as the color  ....
+
+    //set background of parent ... for fun ..
+    document.querySelector("#parent-wrapper").style.background =
+      "rgb(255, 51, 214)";
+    description.textContent = "BY AFTER_MOOD {POSITIVE}";
+    description.style.color = "rgb(179, 230, 204)";
+
+    let coloredEvents = {};
+    let resultSet = resultObj.results;
+
+    //reget
+    let possible_positive_moods = resultObj.positive_moods;
+    let possibleColors = [
+      "rgb(198, 236, 217)",
+      "rgb(179, 230, 204)",
+      "rgb(159, 223, 190)",
+      "rgb(140, 217, 177)",
+      "rgb(121, 210, 164)",
+      "rgb(102, 204, 151)",
+      "rgb(83, 198, 138)",
+      "rgb(64, 191, 125)",
+      "rgb(255, 204, 179)",
+      "rgb(255, 170, 128)",
+      "rgb(255, 153, 102)",
+      "rgb(255, 136, 77)",
+      "rgb(255, 119, 51)",
+      "rgb(255, 102, 26)",
+      "rgb(255, 85, 0)",
+      "rgb(230, 77, 0)",
+      "rgb(204, 68, 0)",
+    ];
+
+    for (let i = 0; i < possibleColors.length; i++) {
+      coloredEvents[possible_positive_moods[i]] = possibleColors[i];
+    }
+
+    let offsetX = 20;
+    let offsetY = 150;
+    // find the weather of the first one ...
+    let currentGroup = resultSet[0][propOne];
+    console.log(currentGroup);
+    let xPos = offsetX;
+    let yPos = offsetY;
+
+    for (let i = 0; i < resultSet.length - 1; i++) {
+      dataPoints.push(
+        new myDataPoint(
+          resultSet[i].dataId,
+          resultSet[i].day,
+          resultSet[i].weather,
+          resultSet[i].start_mood,
+          resultSet[i].after_mood,
+          resultSet[i].after_mood_strength,
+          resultSet[i].event_affect_strength,
+          resultSet[i].event_name,
+          //map to the EVENT ...
+          coloredEvents[resultSet[i].event_name],
+          //last parameter is where should this go...
+          document.querySelector("#childOne"),
+          //which css style///
+          "point_two"
+        )
+      );
+
+      /** check if we have changed group ***/
+      if (resultSet[i][propOne] !== currentGroup) {
+        //update
+        currentGroup = resultSet[i][propOne];
+        offsetX += 150;
+        offsetY = 150;
+        xPos = offsetX;
+        yPos = offsetY;
+      }
+      // if not just keep on....
+      else {
+        if (i % 10 === 0 && i !== 0) {
+          xPos = offsetX;
+          yPos = yPos + 15;
+        } else {
+          xPos = xPos + 15;
+        }
+      } //end outer else
+
+      dataPoints[i].update(xPos, yPos);
+      finalHeight = yPos;
+    } //for
+
+    document.querySelector("#childOne").style.height = `${finalHeight + 20}px`;
   } //function
 
-  /***********************************************/
 };
+
