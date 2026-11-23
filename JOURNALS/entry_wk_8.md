@@ -1,0 +1,3 @@
+I really love HTML and CSS. Building webpages is one of my biggest passion, I realized it this semester. Last semester, I honestly thought that 3D would be. I got into this program to do 3D. Don’t get me wrong, I love 3d; I don’t love making it as much as I enjoy watching it and learning about it. It can be such a pain. But I think that’s the part of being an artist. The labour is only nice when you’re looking back at the efforts you put in. It’s not as much fun when you’re tweaking out because nothing is working like you expected. 
+
+For my mini-project, I feel like I focused so much on the layout design that the efforts I put into the actual assignment were lacking. 
